@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Medicamento;
+use App\Model\Medicamento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MedicamentoController extends Controller
 {
@@ -14,7 +15,11 @@ class MedicamentoController extends Controller
      */
     public function index()
     {
-        //
+//        $medicamentos = DB::table('medicamentos')->orderBy('principio_ativo')->simplePaginate(50);
+        $medicamentos = Medicamento::with('fabricante:id,nome_fabricante')->orderBy('principio_ativo')->paginate(20);
+        return view('medicamento.index',compact('medicamentos'));
+
+
     }
 
     /**

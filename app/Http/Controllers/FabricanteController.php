@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Model\Fabricante;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\DataTables;
 
 class FabricanteController extends Controller
 {
@@ -14,8 +16,13 @@ class FabricanteController extends Controller
      */
     public function index()
     {
-        $fabricantes = Fabricante::all();
-        return view('fabricante.index',compact('fabricantes'));
+//        $fabricantes = DB::table('fabricantes')->orderBy('nome_fabricante');
+//        return view('fabricante.index',compact('fabricantes'));
+        return view('fabricante.index');
+    }
+    public function anyData(){
+        $fabricantes = DB::table('fabricantes')->orderBy('nome_fabricante');
+        return DataTables::of($fabricantes)->make(true);
     }
 
     /**

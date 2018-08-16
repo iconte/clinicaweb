@@ -9,5 +9,6 @@ class Fabricante extends Model
     protected $table ="fabricantes";
     protected $fillable = ["nome_fabricante"];
 
-    //
+
 }
+

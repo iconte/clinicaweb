@@ -11,6 +11,7 @@ class Medicamento extends Model
     protected $fillable = ["principio_ativo","nome_comercial","cod_fabricante"];
 
     public function fabricante(){
-        return $this->hasOne('App\Model\Fabricante');
+        return $this->belongsTo('App\Model\Fabricante','cod_fabricante','id');
     }
+
 }
